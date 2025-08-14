@@ -78,6 +78,8 @@ section {
     display: flex;
     flex-direction: column;
     row-gap: 30px;
+
+    transition: all 2.8s linear;
 }
 .char-creation input {
     width: 725px;
