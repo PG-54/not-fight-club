@@ -1,25 +1,20 @@
-@font-face {
-    font-family: 'LibreCalson';
-    src: url(assets/fonts/LibreCaslonText-Regular.ttf);
-    font-weight: 400;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'LibreCalson';
-    src: url(assets/fonts/LibreCaslonText-Bold.ttf);
-    font-weight: 700;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'LibreCalson';
-    src: url(assets/fonts/LibreCaslonText-Italic.ttf);
-    font-weight: 400;
-    font-style: italic;
-}
+
 @font-face {
     font-family: 'Chiller';
     src: url(assets/fonts/chiller_regular.ttf);
 }
+@font-face {
+    font-family: 'Forum';
+    src: url(assets/fonts/Forum-Regular.ttf);
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url(assets/fonts/Roboto-Regular.ttf);
+}
+:root {
+    --color-winx: #ea236a;
+}
+
 
 button {
     width: fit-content;
@@ -38,30 +33,59 @@ html {
 }
 
 header {
+    user-select: none;
     width: 100vw;
     height: 5vh;
-    background-color: rebeccapurple;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 40px;
+    align-items: center;
+    background-color: #000;
+    color: var(--color-winx);
+    font-family: 'Forum', serif;
+
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 3.5px;
+}
+header ul {
+    display: flex;
+    column-gap: 30px;
+    list-style: none;
+}
+header img {
+    width: 30px;
+    height: auto;
+    cursor: pointer;
 }
 footer {
     width: 100vw;
     height: 5vh;
-    background-color: blue;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    color: var(--color-winx);
 }
 
 main {
     width: 100vw;
     height: 90vh;
+    background-image: url(assets/backgrounds/logo.jpg);
+    background-size: cover;
+    box-shadow: 0 0 10px rgba(255, 255, 255, .1) inset;
 }
 section {
     width: inherit;
     height: inherit;
     display: none;
+    color: var(--color-winx);
 }
 .char-creation {
     user-select: none;
     width: 100vw;
     height: 100vw;
     position: fixed;
+    z-index: 20000;
     top: 0;
     left: 0;
     background-image: url(assets/backgrounds/char-creation.jpg);
@@ -126,4 +150,105 @@ section {
     right: 447px;
     filter: opacity(0);
     cursor: pointer;
+}
+
+
+
+.CHARACTER {
+    padding-left: 870px;
+    padding-top: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-align: center;
+    line-height: 0;
+}
+.CHARACTER > div {
+    display: flex;
+    column-gap: 50px;
+    width: fit-content;
+    height: fit-content;
+}
+.inventory {
+    line-height: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    width: 300px;
+    background-color: #000;
+    border-radius: 20px;
+    border: 2px solid #111;
+    box-shadow: 0 0 10px rgba(255, 255, 255, .3);
+}
+.inventory > * {
+    padding: 20px 0;
+}
+.inventory div:nth-child(even) {
+    width: 100%;
+    border-bottom: 2px solid #111;
+    border-top: 2px solid #111;
+}
+.inventory img {
+    width: 80px;
+    height: 120px;
+    padding: 20px 0;
+}
+
+
+.avatar {
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    row-gap: 24px;
+
+
+
+    width: 600px;
+    height: fit-content;
+    padding: 30px;
+    background-color: #000;
+    border-radius: 20px;
+    border: 2px solid #111;
+    box-shadow: 0 0 10px rgba(255, 255, 255, .3);
+}
+.avatar-image {
+    width: 100%;
+    position: relative;
+}
+.char-image-select {
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 265 / 326;
+    background-color: rgba(0, 0, 0, .5);
+    filter: opacity(0);
+    top: 0;
+    left: 0;
+    transition: all .2s;
+    cursor: pointer;
+}
+.char-image-select:hover {
+    filter: opacity(1);
+}
+.char-image-select::after {
+    content: url(assets/icons/004-settings.png);
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.avatar img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+.statistics {
+    width: 100%;
+    padding-top: 10px;
+    background-color: #000;
+    display: flex;
+    justify-content: space-around;
 }
