@@ -28,11 +28,23 @@
 
         <section class="CHARACTER">
             <div>
+                <div class="char-settings">
+                    <label><input type="text" value="" readonly><img src="assets/icons/edit.png" alt="edit"><img src="assets/icons/name-edit-submit.jpg" alt="Submit"><img src="assets/icons/name-edit-cross.jpg" alt="cancel"></label>
+                    <div>
+                        <img src="assets/characters/dargon.jpg" alt="char-img" onclick="changeCharImage(this)">
+                        <img src="assets/characters/mike.jpg" alt="char-img">
+                        <img src="assets/characters/troll.jpg" alt="char-img">
+                        <label>
+                            <input type="file" accept="image/*">
+                            <img src="assets/characters/upload.jpg" alt="upload">
+                        </label>
+                    </div>
+                </div>
                 <div class="avatar">
                     <p class="char-name"></p>
                     <div class="avatar-image">
-                        <div class="char-image-select"></div>
-                        <img src="assets/characters/mike.jpg" alt="mike"> 
+                        <div class="char-image-select" onclick="toggleCharEditMenu()"></div>
+                        <img class="char-image" src="assets/characters/mike.jpg" alt="mike"> 
                     </div>
                     <div class="statistics">
                         <p>WINS: <span>0</span></p>
@@ -45,11 +57,13 @@
                         <p>Sword</p>
                         <img src="assets/icons/001-battle.png" alt="sword">
                         <p>Attack Zones: <span>1</span></p>
+                        <p>Damage: <span>20</span></p>
                     </div>
                     <div>
                         <p>Shield</p>
                         <img src="assets/icons/003-game.png" alt="helmet">
                         <p>Deffence Zones: <span>2</span></p>
+                        <p>Health: <span>150</span></p>
                     </div>
                 </div>
             </div>
