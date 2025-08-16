@@ -19,7 +19,7 @@
     <main>
         <section class="char-creation">
             <p>WHAT IS<br>YOUR NAME<br>Fellow Guest?</p>
-            <input type="text">
+            <input type="text" maxlength="30">
             <button type="button">Submit</button>
             <audio class="char-creation-bg-music" src="assets/sounds/char-creation-bg-music.mp3" loop></audio>
             <audio class="char-creation-submit" src="assets/sounds/char-cretion-submit.mp3"></audio>
@@ -29,7 +29,7 @@
         <section class="CHARACTER">
             <div>
                 <div class="char-settings">
-                    <label><input type="text" value="" readonly><img src="assets/icons/edit.png" alt="edit"><img src="assets/icons/name-edit-submit.jpg" alt="Submit"><img src="assets/icons/name-edit-cross.jpg" alt="cancel"></label>
+                    <label><input type="text" value="" maxlength="30" readonly><img src="assets/icons/edit.png" alt="edit"><img src="assets/icons/name-edit-submit.jpg" alt="submit"><img src="assets/icons/name-edit-cross.jpg" alt="cancel"></label>
                     <div>
                         <img src="assets/characters/dargon.jpg" alt="char-img" onclick="changeCharImage(this)">
                         <img src="assets/characters/mike.jpg" alt="char-img">

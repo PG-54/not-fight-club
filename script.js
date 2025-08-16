@@ -22,10 +22,7 @@ document.querySelector('.char-creation button').addEventListener('click', () => 
         alert('Введите имя');
         return;
     }
-    if (document.querySelector('.char-creation input').value.length > 30) {
-        alert('Имя не может быть длиннее 30 символов!');
-        return;
-    }
+    
     interactionEvents.forEach(interaction => {
         window.removeEventListener(interaction, bgMusicPlay)
     })
@@ -63,4 +60,33 @@ document.querySelector('.char-settings div input').addEventListener('change', ev
         document.querySelector('.char-settings div').prepend(img);
     }
     reader.readAsDataURL(file);
+})
+
+
+document.querySelector('.char-settings > label img[alt="edit"]').addEventListener('click', (e) => {
+    e.target.style.display = 'none';
+    document.querySelector('.char-settings > label img[alt="submit"]').style.display = 'block';
+    document.querySelector('.char-settings > label img[alt="cancel"]').style.display = 'block';
+    document.querySelector('.char-settings > label input').readOnly = false;
+})
+
+
+
+document.querySelector('.char-settings > label img[alt="submit"]').addEventListener('click', (e) => {
+    const newName = document.querySelector('.char-settings > label input').value;
+    document.querySelectorAll('.char-name').forEach(p => p.innerHTML = newName)
+
+    document.querySelector('.char-settings > label input').readOnly = true;
+    e.target.style.display = 'none';
+    document.querySelector('.char-settings > label img[alt="cancel"]').style.display = 'none';
+    document.querySelector('.char-settings > label img[alt="edit"]').style.display = 'block';
+})
+
+document.querySelector('.char-settings > label img[alt="cancel"]').addEventListener('click', (e) => {
+    document.querySelector('.char-settings > label input').value = document.querySelector('.char-name').innerHTML;
+    
+    document.querySelector('.char-settings > label input').readOnly = true;
+    e.target.style.display = 'none';
+    document.querySelector('.char-settings > label img[alt="submit"]').style.display = 'none';
+    document.querySelector('.char-settings > label img[alt="edit"]').style.display = 'block';
 })
