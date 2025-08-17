@@ -22,7 +22,7 @@ document.querySelector('.char-creation button').addEventListener('click', () => 
         alert('Введите имя');
         return;
     }
-    
+
     interactionEvents.forEach(interaction => {
         window.removeEventListener(interaction, bgMusicPlay)
     })
@@ -90,3 +90,10 @@ document.querySelector('.char-settings > label img[alt="cancel"]').addEventListe
     document.querySelector('.char-settings > label img[alt="submit"]').style.display = 'none';
     document.querySelector('.char-settings > label img[alt="edit"]').style.display = 'block';
 })
+
+
+function switchPage(page) {
+    if (document.querySelector('.char-settings').style.left == '30px') document.querySelector('.char-settings').style.left = '-830px'
+    document.querySelectorAll('section').forEach(section => section.classList.toggle('disabled', true));
+    document.querySelector(page).classList.toggle('disabled', false);
+}

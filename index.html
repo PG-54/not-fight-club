@@ -10,9 +10,9 @@
     <header>
         <p>CHARACTER</p>
         <ul>
-            <li><img src="assets/icons/001-battle.png" alt="battle"></li>
-            <li><img src="assets/icons/002-grocery-store.png" alt="shop"></li>
-            <li><img src="assets/icons/003-game.png" alt="character"></li>
+            <li><span>fight</span><img onclick="switchPage('.FIGHT')" src="assets/icons/001-battle.png" alt="battle"></li>
+            <li><span>shop</span><img class="disabled" src="assets/icons/002-grocery-store.png" alt="shop"></li>
+            <li><span>character</span><img onclick="switchPage('.CHARACTER')" src="assets/icons/003-game.png" alt="character"></li>
         </ul>
     </header>
 
@@ -31,8 +31,8 @@
                 <div class="char-settings">
                     <label><input type="text" value="" maxlength="30" readonly><img src="assets/icons/edit.png" alt="edit"><img src="assets/icons/name-edit-submit.jpg" alt="submit"><img src="assets/icons/name-edit-cross.jpg" alt="cancel"></label>
                     <div>
-                        <img src="assets/characters/dargon.jpg" alt="char-img" onclick="changeCharImage(this)">
                         <img src="assets/characters/mike.jpg" alt="char-img">
+                        <img src="assets/characters/dargon.jpg" alt="char-img" onclick="changeCharImage(this)">
                         <img src="assets/characters/troll.jpg" alt="char-img">
                         <label>
                             <input type="file" accept="image/*">
@@ -69,13 +69,20 @@
             </div>
         </section>
 
-        <section class="MAIN">
+        <section class="FIGHT disabled">
             <button type="button">FIGHT</button>
+            <div class="Fight">
+                <div class="avatar">
+                    <p class="char-name"></p>
+                    <img class="char-image" src="assets/characters/mike.jpg" alt="char">
+                    <div class="health-bar"></div>
+                    <p class="health-points"><span class="current-health"></span> / <span class="max-health"></span></p>
+                </div>
+                <div></div>
+                <div></div>
+            </div>
         </section>
 
-        <section class="BATTLE">
-            
-        </section>
     <!--
         <section class="SHOP">
 
