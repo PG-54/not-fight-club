@@ -48,6 +48,11 @@ header {
     color: var(--color-winx);
     font-family: 'Forum', serif;
 
+
+    box-shadow: 0 0 10px rgba(255, 255, 255, .2);
+    position: relative;
+    z-index: 500;
+
     font-weight: 700;
     font-size: 24px;
     letter-spacing: 3.5px;
@@ -100,6 +105,11 @@ footer {
     display: flex;
     align-items: center;
     color: var(--color-winx);
+
+
+    box-shadow: 0 0 10px rgba(255, 255, 255, .2);
+    position: relative;
+    z-index: 500;
 }
 
 main {
@@ -107,7 +117,6 @@ main {
     height: 90vh;
     background-image: url(assets/backgrounds/logo.jpg);
     background-size: cover;
-    box-shadow: 0 0 10px rgba(255, 255, 255, .1) inset;
     position: relative;
 }
 section {
@@ -354,11 +363,178 @@ section {
     display: none;
 }
 
-.char-settings div::-webkit-scrollbar {
+::-webkit-scrollbar {
     appearance: none;
 }
-.char-settings div::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background-color: #111;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.Fight {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 50px;
+}
+
+.Fight .avatar, .avatar.enemy {
+    width: 500px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+}
+.health-bar {
+    width: 100%;
+    height: 30px;
+    background-color: #000;
+    border: 4px #111 solid;
+    background-image: linear-gradient(to right, var(--color-winx) 100%, black 100%);
+}
+.fight-options {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    row-gap: 20px;
+    flex-direction: column;
+    font-size: 34px;
+    letter-spacing: 3px;
+    font-family: 'Forum', serif;
+    font-weight: 500;
+}
+.fight-options p {
+    text-shadow: 1px 0 4px black;
+}
+.options-wraper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    letter-spacing: .5px;
+    padding: 0 30px;
+    background-color: #000;
+    border-radius: 20px;
+    border: 2px solid #111;
+    box-shadow: 0 0 10px rgba(255, 255, 255, .3);
+    width: 400px;
+}
+.options-wraper hr {
+    height: 100%;
+    background-color: #111;
+    width: 4px;
+    border: none;
+}
+.options-wraper div {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    row-gap: 4px;
+    padding-top: 20px;
+}
+.options-wraper div p {
+    font-size: 30px;
+    font-family: 'Forum';
+    font-weight: 500;
+}
+.options-wraper div label {
+    cursor: pointer;
+    padding-bottom: 8px;
+}
+.attack-zones {
+    text-align: right;
+    padding-right: 30px;
+}
+.deffence-zones {
+    text-align: left;
+    padding-left: 30px;
+}
+.options-wraper input {
+    display: none;
+}
+.options-wraper label span {
+    width: .8em;
+    height: .8em;
+    display: block;
+    border-radius: 50%;
+    background-color: #000;
+    border: 2px solid var(--color-winx);
+}
+.options-wraper div label input:checked + span {
+    background-color: var(--color-winx);
+}
+.options-wraper div label {
+    vertical-align: middle;
+    align-items: center;
+    display: flex;
+    column-gap: 10px;
+}
+.attack-zones label {
+    justify-content: flex-end;
+}
+
+.fight-options button {
+    color: var(--color-winx);
+    padding: 8px 24px;
+    background-color: #000;
+    border-radius: 14px;
+    border: 2px solid #111;
+    box-shadow: 0 0 10px var(--color-winx);
+    font-family: 'Forum', serif;
+    font-size: 30px;
+    cursor: pointer;
+    filter: saturate(.2);
+}
+
+.FIGHT {
+    position: relative;
+}
+.FIGHT > button {
+    color: var(--color-winx);
+    font-size: 300px;
+    letter-spacing: 25px;
+    line-height: 1em;
+    padding: 80px 120px 50px;
+    font-family: 'Chiller';
+    background-image: url(assets/svg/fight-button-msk.svg);
+    background-size: 100% 100%;
+    filter: drop-shadow(0 0 40px #ea236a);
+    margin-left: 42%;
+    margin-top: 11%;
+    cursor: pointer;
+    transition: all .015s ease-in;
+}
+.FIGHT > button:active {
+    transform: scale(.95);
+}
+
+
+.fight-log {
+    width: 760px;
+    height: 420px;
+    padding: 24px;
+    background-color: #000;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border: 2px solid #111;
+    box-shadow: 0 0 8px rgba(255, 255, 255, .2);
+    color: #888;
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    overflow-y: scroll;
+    
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: .5px;
+}
+
+
+.fight-log::-webkit-scrollbar-thumb {
+    border-radius: 5px;
 }

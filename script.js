@@ -96,4 +96,5 @@ function switchPage(page) {
     if (document.querySelector('.char-settings').style.left == '30px') document.querySelector('.char-settings').style.left = '-830px'
     document.querySelectorAll('section').forEach(section => section.classList.toggle('disabled', true));
     document.querySelector(page).classList.toggle('disabled', false);
+    document.querySelector('header p').innerHTML = page.slice(1);
 }
