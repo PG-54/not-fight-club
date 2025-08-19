@@ -33,8 +33,6 @@
                     <label><input type="text" value="" maxlength="30" readonly><img src="assets/icons/edit.png" alt="edit"><img src="assets/icons/name-edit-submit.jpg" alt="submit"><img src="assets/icons/name-edit-cross.jpg" alt="cancel"></label>
                     <div>
                         <img src="assets/characters/mike.jpg" alt="char-img">
-                        <img src="assets/characters/dargon.jpg" alt="char-img">
-                        <img src="assets/characters/troll.jpg" alt="char-img">
                         <label>
                             <input type="file" accept="image/*">
                             <img src="assets/characters/upload.jpg" alt="upload">
@@ -71,11 +69,11 @@
         </section>
 
         <section class="FIGHT disabled">
-            <button type="button" class="disabled">FIGHT</button>
-            <div class="Fight">
+            <button type="button" onclick="startFight()">FIGHT</button>
+            <div class="Fight disabled">
                 <div class="fight-log">
                 </div>
-                <div class="avatar">
+                <div class="avatar player">
                     <p class="char-name"></p>
                     <img class="char-image" src="assets/characters/mike.jpg" alt="char">
                     <div class="health-bar"></div>
@@ -107,10 +105,10 @@
                 </div>
 
                 <div class="avatar enemy">
-                    <p class="char-name"></p>
-                    <img class="char-image" src="assets/characters/mike.jpg" alt="char">
+                    <p class="enemy-name"></p>
+                    <img class="char-image" src="assets/characters/mike.jpg" alt="enemy">
                     <div class="health-bar"></div>
-                    <p class="health-points">150<span class="current-health"></span>/<span class="max-health">150</span></p>
+                    <p class="health-points"><span class="current-health"></span>/<span class="max-health"></span></p>
                 </div>
             </div>
         </section>

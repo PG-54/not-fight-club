@@ -33,7 +33,8 @@ document.querySelector('.char-creation button').addEventListener('click', () => 
         document.querySelector('.char-creation-submit').play();
         charCreateAudio.pause();
         document.querySelector('.char-settings input[type="text"]').value = document.querySelector('.char-creation input').value;
-        document.querySelectorAll('.char-name').forEach(field => field.innerHTML = document.querySelector('.char-creation input').value)
+        document.querySelectorAll('.char-name').forEach(field => field.innerHTML = document.querySelector('.char-creation input').value);
+        character.name = document.querySelector('.char-creation input').value;
     }, 10)
     setTimeout(() => document.querySelector('.char-creation').style.display = 'none', 3000)
 })
@@ -75,6 +76,7 @@ document.querySelector('.char-settings > label img[alt="edit"]').addEventListene
 document.querySelector('.char-settings > label img[alt="submit"]').addEventListener('click', (e) => {
     const newName = document.querySelector('.char-settings > label input').value;
     document.querySelectorAll('.char-name').forEach(p => p.innerHTML = newName)
+    character.name = newName;
 
     document.querySelector('.char-settings > label input').readOnly = true;
     e.target.style.display = 'none';
@@ -98,3 +100,80 @@ function switchPage(page) {
     document.querySelector(page).classList.toggle('disabled', false);
     document.querySelector('header p').innerHTML = page.slice(1);
 }
+
+const character = {
+    name : '',
+    damage : 20,
+    attackZones : 1,
+    health : 150,
+    deffenceZones : 2,
+}
+const enemies = [
+    {
+        src : 'assets/characters/dragon.jpg',
+        name : 'DRAGON',
+        damage : 40,
+        attackZones : 1,
+        health : 180,
+        deffenceZones : 1,
+    },
+    {
+        src : 'assets/characters/ogre.jpg',
+        name : 'OGRE',
+        damage : 20,
+        attackZones : 1,
+        health : 150,
+        deffenceZones : 3,
+    },
+    {
+        src : 'assets/characters/goblin.jpg',
+        name : 'GOBLIN',
+        damage : 15,
+        attackZones : 3,
+        health : 110,
+        deffenceZones : 1,
+    }
+]
+
+function chooseEnemy() {
+    const random = Math.random();
+    if (random < .3) return enemies[0];
+    if (random < .7) return enemies[1];
+    else return enemies[2];
+}
+
+function startFight() {
+    const enemy = chooseEnemy()
+    
+    document.querySelector('.fight-options .attack-zones p span').innerHTML = character.attackZones;
+    document.querySelector('.fight-options .deffence-zones p span').innerHTML = character.deffenceZones;
+
+    document.querySelectorAll('.Fight .player .health-points span').forEach(span => span.innerHTML = character.health);
+    document.querySelector('.Fight .player .health-bar').style.backgroundImage = 'linear-gradient(to right, var(--color-winx) 100%, black 100%)'; 
+    
+    document.querySelectorAll('.Fight .enemy .health-points span').forEach(span => span.innerHTML = enemy.health);
+    document.querySelector('.Fight .enemy .health-bar').style.backgroundImage = 'linear-gradient(to left, var(--color-winx) 100%, black 100%)'; 
+    document.querySelector('.Fight .enemy-name').innerHTML = enemy.name;
+    document.querySelector('.Fight .enemy img').src = enemy.src;
+
+    setTimeout(() => {
+        document.querySelector('.FIGHT > button').classList.toggle('disabled', true);
+        document.querySelector('.Fight').classList.toggle('disabled', false);
+    }, 200)
+
+//    document.querySelector('.fight-music').play();
+}
+
+document.querySelectorAll('.fight-options input').forEach(input => input.addEventListener('change', () => {
+    const button = document.querySelector('.fight-options button');
+
+    if (document.querySelectorAll('.fight-options .attack-zones input:checked').length == character.attackZones
+        && document.querySelectorAll('.fight-options .deffence-zones input:checked').length == character.deffenceZones) {
+        button.style.filter = 'saturate(1)';
+        button.style.pointerEvents = 'all';
+    }
+    else {
+        button.style.filter = 'saturate(.2)';    
+        button.style.pointerEvents = 'none';    
+    }
+}))
