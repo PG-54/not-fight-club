@@ -1,3 +1,6 @@
+document.querySelector('.fight-music').volume = .2;
+document.querySelector('.chill-music').volume = .2;
+
 const charCreateAudio = document.querySelector('.char-creation-bg-music');
 charCreateAudio.volume = .1;
 const bgMusicPlay = () => charCreateAudio.play();
@@ -27,6 +30,7 @@ document.querySelector('.char-creation button').addEventListener('click', () => 
         window.removeEventListener(interaction, bgMusicPlay)
     })
     setTimeout(() => {
+        document.querySelector('body').style.pointerEvents = 'none'
         van.style.display = 'none';
         document.querySelector('.CHARACTER').style.display = 'flex';       
         document.querySelector('.char-creation').style.top = '100%';
@@ -36,7 +40,11 @@ document.querySelector('.char-creation button').addEventListener('click', () => 
         document.querySelectorAll('.char-name').forEach(field => field.innerHTML = document.querySelector('.char-creation input').value);
         character.name = document.querySelector('.char-creation input').value;
     }, 10)
-    setTimeout(() => document.querySelector('.char-creation').style.display = 'none', 3000)
+    setTimeout(() => {
+        document.querySelector('.char-creation').style.display = 'none';
+        document.querySelector('.chill-music').play();
+        document.querySelector('body').style.pointerEvents = 'all'
+    }, 4000)
 })
 
 function toggleCharEditMenu() {
@@ -99,6 +107,13 @@ function switchPage(page) {
     document.querySelectorAll('section').forEach(section => section.classList.toggle('disabled', true));
     document.querySelector(page).classList.toggle('disabled', false);
     document.querySelector('header p').innerHTML = page.slice(1);
+
+    document.querySelector('.FIGHT > button').classList.toggle('disabled', false);
+    document.querySelector('.Fight').classList.toggle('disabled', true);
+    
+    document.querySelector('.fight-music').pause();
+    document.querySelector('.fight-music').currentTime = 0;
+    document.querySelector('.chill-music').play();
 }
 
 const character = {
@@ -159,9 +174,12 @@ function startFight() {
     setTimeout(() => {
         document.querySelector('.FIGHT > button').classList.toggle('disabled', true);
         document.querySelector('.Fight').classList.toggle('disabled', false);
-    }, 200)
+    }, 200);
 
-//    document.querySelector('.fight-music').play();
+    document.querySelector('.chill-music').pause();
+    document.querySelector('.chill-music').currentTime = 0;
+    document.querySelector('.fight-music').currentTime = 0;
+    document.querySelector('.fight-music').play();
 }
 
 document.querySelectorAll('.fight-options input').forEach(input => input.addEventListener('change', () => {
@@ -177,3 +195,11 @@ document.querySelectorAll('.fight-options input').forEach(input => input.addEven
         button.style.pointerEvents = 'none';    
     }
 }))
+
+
+function getRandomIndex() {
+    while (true) {
+        const random = Math.ceil((Math.random() * 10));
+        if (random < 6) return random-1;
+    }
+}

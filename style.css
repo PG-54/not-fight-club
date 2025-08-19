@@ -182,10 +182,11 @@ section {
     transform: scale(.9);
     filter: brightness(.5);
 }
-.char-creation-bg-music {
+audio {
     display: none;
 }
 .van-sound {
+    display: block;
     width: 478px;
     height: 876px;
     position: fixed;
