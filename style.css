@@ -39,7 +39,7 @@ html {
 header {
     user-select: none;
     width: 100vw;
-    height: 5vh;
+    height: 10vh;
     display: flex;
     justify-content: space-between;
     padding: 4px 40px;
@@ -54,7 +54,7 @@ header {
     z-index: 500;
 
     font-weight: 700;
-    font-size: 24px;
+    font-size: 36px;
     letter-spacing: 3.5px;
 }
 header ul {
@@ -62,8 +62,8 @@ header ul {
     list-style: none;
 }
 header img {
-    margin-left: 30px;
-    width: 30px;
+    margin-left: 60px;
+    width: 60px;
     height: auto;
     cursor: pointer;
 }
@@ -75,7 +75,7 @@ header span {
     z-index: 3000;
     color: var(--color-winx);
     background-color: #000;
-    font-size: 18px;
+    font-size: 24px;
     letter-spacing: .5px;
     text-align: center;
     line-height: 0;
@@ -91,10 +91,9 @@ header span {
     
     position: absolute;
     top: 110%;
-    left: 50%;
-    transform: translateX(-30%);
+    right: -5px;
 }
-header li:hover span {
+header img:hover + span {
     filter: opacity(1);
 }
 
@@ -114,7 +113,7 @@ footer {
 
 main {
     width: 100vw;
-    height: 90vh;
+    height: 85vh;
     background-image: url(assets/backgrounds/logo.jpg);
     background-size: cover;
     position: relative;
@@ -251,7 +250,7 @@ section {
     align-items: center;    
     row-gap: 24px;
 
-    width: 600px;
+    width: 550px;
     height: fit-content;
     padding: 30px;
     background-color: #000;
@@ -312,6 +311,13 @@ section {
 
     transition: all .2s ease;
 }
+.char-settings button {
+    cursor: pointer;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
 .char-settings > label {
     width: 100%;
     font-size: 24px;
@@ -483,6 +489,13 @@ section {
     font-size: 30px;
     cursor: pointer;
     filter: saturate(.2);
+
+    user-select: none;
+    transition: all .1s ease-in;
+    pointer-events: none;
+}
+.fight-options button:active {
+    transform: scale(.95);
 }
 
 .FIGHT {
@@ -510,7 +523,7 @@ section {
 
 .fight-log {
     width: 760px;
-    height: 420px;
+    height: 400px;
     padding: 24px;
     background-color: #000;
     border-top-left-radius: 14px;

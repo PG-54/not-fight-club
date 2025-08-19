@@ -10,9 +10,9 @@
     <header>
         <p>CHARACTER</p>
         <ul>
-            <li><span>fight</span><img onclick="switchPage('.FIGHT')" src="assets/icons/001-battle.png" alt="battle"></li>
-            <li><span>shop</span><img class="disabled" src="assets/icons/002-grocery-store.png" alt="shop"></li>
-            <li><span>character</span><img onclick="switchPage('.CHARACTER')" src="assets/icons/003-game.png" alt="character"></li>
+            <li><img onclick="switchPage('.FIGHT')" src="assets/icons/001-battle.png" alt="battle"><span>fight</span></li>
+            <li><img class="disabled" src="assets/icons/002-grocery-store.png" alt="shop"><span>shop</span></li>
+            <li><img onclick="switchPage('.CHARACTER')" src="assets/icons/003-game.png" alt="character"><span>character</span></li>
         </ul>
     </header>
 
@@ -29,10 +29,11 @@
         <section class="CHARACTER">
             <div>
                 <div class="char-settings">
+                    <button onclick="toggleCharEditMenu()"><img src="assets/icons/close-settings.png" alt="close"></button>
                     <label><input type="text" value="" maxlength="30" readonly><img src="assets/icons/edit.png" alt="edit"><img src="assets/icons/name-edit-submit.jpg" alt="submit"><img src="assets/icons/name-edit-cross.jpg" alt="cancel"></label>
                     <div>
                         <img src="assets/characters/mike.jpg" alt="char-img">
-                        <img src="assets/characters/dargon.jpg" alt="char-img" onclick="changeCharImage(this)">
+                        <img src="assets/characters/dargon.jpg" alt="char-img">
                         <img src="assets/characters/troll.jpg" alt="char-img">
                         <label>
                             <input type="file" accept="image/*">
@@ -70,27 +71,9 @@
         </section>
 
         <section class="FIGHT disabled">
-            <button type="button">FIGHT</button>
-            <div class="Fight disabled">
+            <button type="button" class="disabled">FIGHT</button>
+            <div class="Fight">
                 <div class="fight-log">
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
-                    <p>asdasdasd</p>
                 </div>
                 <div class="avatar">
                     <p class="char-name"></p>
