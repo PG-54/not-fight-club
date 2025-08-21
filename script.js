@@ -38,7 +38,7 @@ document.querySelector('.char-creation button').addEventListener('click', () => 
         charCreateAudio.pause();
         document.querySelector('.char-settings input[type="text"]').value = document.querySelector('.char-creation input').value;
         document.querySelectorAll('.char-name').forEach(field => field.innerHTML = document.querySelector('.char-creation input').value);
-        character.name = document.querySelector('.char-creation input').value;
+        player.name = document.querySelector('.char-creation input').value;
     }, 10)
     setTimeout(() => {
         document.querySelector('.char-creation').style.display = 'none';
@@ -84,7 +84,7 @@ document.querySelector('.char-settings > label img[alt="edit"]').addEventListene
 document.querySelector('.char-settings > label img[alt="submit"]').addEventListener('click', (e) => {
     const newName = document.querySelector('.char-settings > label input').value;
     document.querySelectorAll('.char-name').forEach(p => p.innerHTML = newName)
-    character.name = newName;
+    player.name = newName;
 
     document.querySelector('.char-settings > label input').readOnly = true;
     e.target.style.display = 'none';
@@ -116,7 +116,7 @@ function switchPage(page) {
     document.querySelector('.chill-music').play();
 }
 
-const character = {
+const player = {
     name : '',
     damage : 20,
     attackZones : 1,
@@ -156,18 +156,19 @@ function chooseEnemy() {
     if (random < .7) return enemies[1];
     else return enemies[2];
 }
+let enemy;
 
 function startFight() {
-    const enemy = chooseEnemy()
+    enemy = chooseEnemy()
     
-    document.querySelector('.fight-options .attack-zones p span').innerHTML = character.attackZones;
-    document.querySelector('.fight-options .deffence-zones p span').innerHTML = character.deffenceZones;
+    document.querySelector('.fight-options .attack-zones p span').innerHTML = player.attackZones;
+    document.querySelector('.fight-options .deffence-zones p span').innerHTML = player.deffenceZones;
 
-    document.querySelectorAll('.Fight .player .health-points span').forEach(span => span.innerHTML = character.health);
-    document.querySelector('.Fight .player .health-bar').style.backgroundImage = 'linear-gradient(to right, var(--color-winx) 100%, black 100%)'; 
+    document.querySelectorAll('.Fight .player .health-points span').forEach(span => span.innerHTML = player.health);
+    playerHealthBar.style.backgroundImage = 'linear-gradient(to right, var(--color-winx) 100%, black 100%)'; 
     
     document.querySelectorAll('.Fight .enemy .health-points span').forEach(span => span.innerHTML = enemy.health);
-    document.querySelector('.Fight .enemy .health-bar').style.backgroundImage = 'linear-gradient(to left, var(--color-winx) 100%, black 100%)'; 
+    enemyHealthBar.style.backgroundImage = 'linear-gradient(to left, var(--color-winx) 100%, black 100%)'; 
     document.querySelector('.Fight .enemy-name').innerHTML = enemy.name;
     document.querySelector('.Fight .enemy img').src = enemy.src;
 
@@ -185,8 +186,8 @@ function startFight() {
 document.querySelectorAll('.fight-options input').forEach(input => input.addEventListener('change', () => {
     const button = document.querySelector('.fight-options button');
 
-    if (document.querySelectorAll('.fight-options .attack-zones input:checked').length == character.attackZones
-        && document.querySelectorAll('.fight-options .deffence-zones input:checked').length == character.deffenceZones) {
+    if (document.querySelectorAll('.fight-options .attack-zones input:checked').length == player.attackZones
+        && document.querySelectorAll('.fight-options .deffence-zones input:checked').length == player.deffenceZones) {
         button.style.filter = 'saturate(1)';
         button.style.pointerEvents = 'all';
     }
@@ -201,5 +202,69 @@ function getRandomIndex() {
     while (true) {
         const random = Math.ceil((Math.random() * 10));
         if (random < 6) return random-1;
+    }
+}
+
+function createEnemyZoneSelection(amount) {
+    const zones = ['Head', 'Neck', 'Body', 'Belly', 'Legs'];
+    const res = [];
+    let i = amount;
+    while (i > 0) {
+        let index = getRandomIndex();
+        if (!res.includes(zones[index])) {
+            res.push(zones[index]);
+            i--;
+        }
+    }
+    return res;
+}
+
+const currentPlayerHealth = document.querySelector('.Fight .player .current-health');
+const playerHealthBar = document.querySelector('.Fight .player .health-bar');
+const currentEnemyHealth = document.querySelector('.Fight .enemy .current-health');
+const enemyHealthBar = document.querySelector('.Fight .enemy .health-bar');
+const fightLog = document.querySelector('.fight-log')
+
+function fightRound() {
+
+    const playerAttacks = [...(document.querySelectorAll('.fight-options .attack-zones input:checked'))].map(input => input.value);
+    const enemyDeffence = createEnemyZoneSelection(enemy.deffenceZones);
+
+    while (playerAttacks.length) {
+        let playerAttack = playerAttacks.pop()
+        if (!enemyDeffence.includes(playerAttack)) {
+            const p = document.createElement('p');
+            p.innerHTML = `<span class="fight-log-pink">${player.name}</span> attacked <span class="fight-log-pink">${enemy.name}</span> to <span class="fight-log-pink">${playerAttack}</span> but ${enemy.name} was able to protect his ${playerAttack}`;
+            fightLog.append(p);
+            continue;
+        };
+
+        currentEnemyHealth.innerHTML = +currentEnemyHealth.innerHTML - player.damage;
+        const percentage = +currentEnemyHealth.innerHTML / enemy.health * 100;
+        enemyHealthBar.style.backgroundImage = `linear-gradient(to left, var(--color-winx) ${percentage}%, black ${percentage}%)`
+        const p = document.createElement('p');
+        p.innerHTML = `<span class="fight-log-pink">${player.name}</span> attacked <span class="fight-log-pink">${enemy.name}</span> to <span class="fight-log-pink">${playerAttack}</span> and dealt <span class="fight-log-damage">${player.damage} damage</span>`;
+        fightLog.append(p);
+    }
+
+    const enemyAttacks = createEnemyZoneSelection(enemy.attackZones);
+    const playerDeffence = [...(document.querySelectorAll('.fight-options .deffence-zones input:checked'))].map(input => input.value);
+
+
+    while (enemyAttacks.length) {
+        let enemyAttack = enemyAttacks.pop()
+        if (!playerDeffence.includes(enemyAttack)) {
+            const p = document.createElement('p');
+            p.innerHTML = `<span class="fight-log-pink">${enemy.name}</span> attacked <span class="fight-log-pink">${player.name}</span> to <span class="fight-log-pink">${enemyAttack}</span> but ${player.name} was able to protect his ${enemyAttack}`;
+            fightLog.append(p);
+            continue;
+        };
+
+        currentPlayerHealth.innerHTML = +currentPlayerHealth.innerHTML - enemy.damage;
+        const percentage = +currentPlayerHealth.innerHTML / player.health * 100;
+        playerHealthBar.style.backgroundImage = `linear-gradient(to right, var(--color-winx) ${percentage}%, black ${percentage}%)`
+        const p = document.createElement('p');
+        p.innerHTML = `<span class="fight-log-pink">${enemy.name}</span> attacked <span class="fight-log-pink">${player.name}</span> to <span class="fight-log-pink">${enemyAttack}</span> and dealt <span class="fight-log-damage">${enemy.damage} damage</span>`;
+        fightLog.append(p);
     }
 }

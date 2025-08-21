@@ -396,7 +396,7 @@ audio {
     background-color: #000;
     border: 4px #111 solid;
     background-image: linear-gradient(to right, var(--color-winx) 100%, black 100%);
-    transition: all .05s linear;
+    transition: all .2s linear;
 }
 .enemy .health-bar {
     background-image: linear-gradient(to left, var(--color-winx) 100%, black 100%);
@@ -555,4 +555,12 @@ audio {
 
 .fight-log::-webkit-scrollbar-thumb {
     border-radius: 5px;
+}
+
+.fight-log-pink {
+    color: var(--color-winx);
+}
+.fight-log-damage {
+    font-weight: 600;
+    color: #aaa;
 }
