@@ -235,8 +235,6 @@ function fightRound() {
 
     const playerAttacks = Array.from(document.querySelectorAll('.fight-options .attack-zones input:checked')).map(input => input.value) 
     const enemyDeffence = createEnemyZoneSelection(enemy.deffenceZones);
-    console.log(playerAttacks)
-    console.log(enemyDeffence)
 
     while (playerAttacks.length) {
         let playerAttack = playerAttacks.pop()
@@ -265,8 +263,6 @@ function fightRound() {
 
     const enemyAttacks = createEnemyZoneSelection(enemy.attackZones);
     const playerDeffence = Array.from(document.querySelectorAll('.fight-options .deffence-zones input:checked')).map(input => input.value) 
-    console.log(enemyAttacks);
-    console.log(playerDeffence);
 
     while (enemyAttacks.length) {
         let enemyAttack = enemyAttacks.pop()
