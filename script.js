@@ -114,6 +114,11 @@ function switchPage(page) {
     document.querySelector('.fight-music').pause();
     document.querySelector('.fight-music').currentTime = 0;
     document.querySelector('.chill-music').play();
+
+    document.getElementById('overlay').classList.toggle('disabled', true);
+    document.getElementById('win').classList.toggle('disabled', true);
+    document.getElementById('loose').classList.toggle('disabled', true);
+
 }
 
 const player = {
@@ -145,7 +150,7 @@ const enemies = [
         name : 'GOBLIN',
         damage : 15,
         attackZones : 3,
-        health : 110,
+        health : 80,
         deffenceZones : 1,
     }
 ]
@@ -157,7 +162,6 @@ function chooseEnemy() {
     else return enemies[2];
 }
 let enemy;
-
 function startFight() {
     enemy = chooseEnemy()
     
@@ -165,10 +169,10 @@ function startFight() {
     document.querySelector('.fight-options .deffence-zones p span').innerHTML = player.deffenceZones;
 
     document.querySelectorAll('.Fight .player .health-points span').forEach(span => span.innerHTML = player.health);
-    playerHealthBar.style.backgroundImage = 'linear-gradient(to right, var(--color-winx) 100%, black 100%)'; 
+    playerHealthBar.style.width = '100%';
     
     document.querySelectorAll('.Fight .enemy .health-points span').forEach(span => span.innerHTML = enemy.health);
-    enemyHealthBar.style.backgroundImage = 'linear-gradient(to left, var(--color-winx) 100%, black 100%)'; 
+    enemyHealthBar.style.width = '100%'; 
     document.querySelector('.Fight .enemy-name').innerHTML = enemy.name;
     document.querySelector('.Fight .enemy img').src = enemy.src;
 
@@ -240,8 +244,9 @@ function fightRound() {
         };
 
         currentEnemyHealth.innerHTML = +currentEnemyHealth.innerHTML - player.damage;
-        const percentage = +currentEnemyHealth.innerHTML / enemy.health * 100;
-        enemyHealthBar.style.backgroundImage = `linear-gradient(to left, var(--color-winx) ${percentage}%, black ${percentage}%)`
+        let percentage = +currentEnemyHealth.innerHTML / enemy.health * 100;
+        if (percentage < 0) percentage = 0;
+        enemyHealthBar.style.width = `${percentage}%`
         const p = document.createElement('p');
         p.innerHTML = `<span class="fight-log-pink">${player.name}</span> attacked <span class="fight-log-pink">${enemy.name}</span> to <span class="fight-log-pink">${playerAttack}</span> and dealt <span class="fight-log-damage">${player.damage} damage</span>`;
         fightLog.append(p);
@@ -261,10 +266,33 @@ function fightRound() {
         };
 
         currentPlayerHealth.innerHTML = +currentPlayerHealth.innerHTML - enemy.damage;
-        const percentage = +currentPlayerHealth.innerHTML / player.health * 100;
-        playerHealthBar.style.backgroundImage = `linear-gradient(to right, var(--color-winx) ${percentage}%, black ${percentage}%)`
+        let percentage = +currentPlayerHealth.innerHTML / player.health * 100;
+        if (percentage < 0) percentage = 0;
+        playerHealthBar.style.width = `${percentage}%`
         const p = document.createElement('p');
         p.innerHTML = `<span class="fight-log-pink">${enemy.name}</span> attacked <span class="fight-log-pink">${player.name}</span> to <span class="fight-log-pink">${enemyAttack}</span> and dealt <span class="fight-log-damage">${enemy.damage} damage</span>`;
         fightLog.append(p);
+    }
+
+    if (+currentPlayerHealth.innerHTML <= 0) {
+        fightLog.innerHTML = '';
+        document.querySelector('.fight-music').pause();
+        document.getElementById('overlay').classList.toggle('disabled', false);
+        document.getElementById('loose').classList.toggle('disabled', false);
+        document.querySelector('.loose-sound').currentTime = 0;
+        document.querySelector('.loose-sound').play();
+
+        document.querySelector('.statistics .loses').innerHTML = +document.querySelector('.statistics .loses').innerHTML + 1;
+        return
+    }
+    if (+currentEnemyHealth.innerHTML <= 0) {
+        fightLog.innerHTML = '';
+        document.querySelector('.fight-music').pause();
+        document.getElementById('overlay').classList.toggle('disabled', false);
+        document.getElementById('win').classList.toggle('disabled', false);
+        document.querySelector('.win-sound').currentTime = 0;
+        document.querySelector('.win-sound').play();
+        document.querySelector('.statistics .wins').innerHTML = +document.querySelector('.statistics .wins').innerHTML + 1;
+        return
     }
 }

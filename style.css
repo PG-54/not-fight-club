@@ -20,6 +20,29 @@
 }
 
 
+#overlay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000001;
+    background: none;
+    cursor: pointer;
+}
+#overlay img {
+    width: 50%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000000;
+    border-radius: 25px;
+    box-shadow: 0 0 50px rgba(255, 255, 255, .3);
+}
+
+
 button {
     width: fit-content;
     height: fit-content;
@@ -390,16 +413,26 @@ audio {
     font-family: 'Roboto', sans-serif;
     font-size: 24px;
 }
-.health-bar {
+.health-bar-wrapper {
     width: 100%;
     height: 30px;
     background-color: #000;
     border: 4px #111 solid;
-    background-image: linear-gradient(to right, var(--color-winx) 100%, black 100%);
+    position: relative;
+}
+.health-bar {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: var(--color-winx);
     transition: all .2s linear;
 }
+.player .health-bar {
+    left: 0;
+}
 .enemy .health-bar {
-    background-image: linear-gradient(to left, var(--color-winx) 100%, black 100%);
+    right: 0;    
 }
 .fight-options {
     text-align: center;

@@ -7,8 +7,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="overlay" class="disabled" onclick="switchPage('.CHARACTER')">
+        <img src="assets/backgrounds/win.jpg" alt="win-screen" id="win" class="disabled">
+        <img src="assets/backgrounds/loose.jpg" alt="loose-screen" id="loose" class="disabled">
+    </div>
     <audio src="assets/sounds/fight-music.mp3" loop class="fight-music"></audio>
     <audio src="assets/sounds/chill-music.flac" loop class="chill-music"></audio>
+    <audio src="" class="win-sound"></audio>
+    <audio src="" class="loose-sound"></audio>
     <header>
         <p>CHARACTER</p>
         <ul>
@@ -35,6 +41,7 @@
                     <label><input type="text" value="" maxlength="30" readonly><img src="assets/icons/edit.png" alt="edit"><img src="assets/icons/name-edit-submit.jpg" alt="submit"><img src="assets/icons/name-edit-cross.jpg" alt="cancel"></label>
                     <div>
                         <img src="assets/characters/mike.jpg" alt="char-img">
+                        <img src="assets/characters/mage.jpg" alt="char-img">
                         <label>
                             <input type="file" accept="image/*">
                             <img src="assets/characters/upload.jpg" alt="upload">
@@ -48,21 +55,21 @@
                         <img class="char-image" src="assets/characters/mike.jpg" alt="mike"> 
                     </div>
                     <div class="statistics">
-                        <p>WINS: <span>0</span></p>
-                        <p>LOSES: <span>0</span></p>
+                        <p>WINS: <span class="wins">0</span></p>
+                        <p>LOSES: <span class="loses">0</span></p>
                     </div>
                 </div>
                 <div class="inventory">
                     <p>ITEMS</p>
                     <div>
                         <p>Sword</p>
-                        <img src="assets/icons/001-battle.png" alt="sword">
+                        <img src="assets/icons/002-sword.png" alt="sword">
                         <p>Attack Zones: <span>1</span></p>
                         <p>Damage: <span>20</span></p>
                     </div>
                     <div>
                         <p>Shield</p>
-                        <img src="assets/icons/003-game.png" alt="helmet">
+                        <img src="assets/icons/001-shield.png" alt="shield">
                         <p>Deffence Zones: <span>2</span></p>
                         <p>Health: <span>150</span></p>
                     </div>
@@ -78,7 +85,7 @@
                 <div class="avatar player">
                     <p class="char-name"></p>
                     <img class="char-image" src="assets/characters/mike.jpg" alt="char">
-                    <div class="health-bar"></div>
+                    <div class="health-bar-wrapper"><div class="health-bar"></div></div>
                     <p class="health-points"><span class="current-health">150</span>/<span class="max-health">150</span></p>
                 </div>
 
@@ -109,7 +116,7 @@
                 <div class="avatar enemy">
                     <p class="enemy-name"></p>
                     <img class="char-image" src="assets/characters/mike.jpg" alt="enemy">
-                    <div class="health-bar"></div>
+                    <div class="health-bar-wrapper"><div class="health-bar"></div></div>
                     <p class="health-points"><span class="current-health"></span>/<span class="max-health"></span></p>
                 </div>
             </div>
@@ -127,7 +134,7 @@
         <a target="_blank" href="https://rs.school/courses/javascript">Rolling Scopes School</a>
         <a target="_blank" href="http://github.com/PG-54">PG-54</a>
         </div>
-        <p>Icons designed by <a href="https://www.flaticon.com/authors/pixel-perfect">Pixel perfect</a>, <a href="https://www.flaticon.com/authors/frey-wazza">Frey Wazza</a>, <a href="https://www.flaticon.com/authors/freepik">Freepic</a> and <a href="https://www.flaticon.com/authors/microstd">microstd</a> from <a href="https://www.flaticon.com/">Flaticon</a></p>
+        <p>Icons designed by <a href="https://www.flaticon.com/authors/good-ware" title="Good Ware">Good Ware</a>, <a href="https://www.flaticon.com/authors/iconic-panda" title="Iconic Panda">Iconic Panda</a>, <a href="https://www.flaticon.com/authors/pixel-perfect">Pixel perfect</a>, <a href="https://www.flaticon.com/authors/frey-wazza">Frey Wazza</a>, <a href="https://www.flaticon.com/authors/freepik">Freepic</a> and <a href="https://www.flaticon.com/authors/microstd">microstd</a> from <a href="https://www.flaticon.com/">Flaticon</a></p>
     </footer>
     <script src="script.js"></script>
 </body>
