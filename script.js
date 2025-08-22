@@ -233,12 +233,14 @@ const fightLog = document.querySelector('.fight-log')
 
 function fightRound() {
 
-    const playerAttacks = [...(document.querySelectorAll('.fight-options .attack-zones input:checked'))].map(input => input.value);
+    const playerAttacks = Array.from(document.querySelectorAll('.fight-options .attack-zones input:checked')).map(input => input.value) 
     const enemyDeffence = createEnemyZoneSelection(enemy.deffenceZones);
+    console.log(playerAttacks)
+    console.log(enemyDeffence)
 
     while (playerAttacks.length) {
         let playerAttack = playerAttacks.pop()
-        if (!enemyDeffence.includes(playerAttack)) {
+        if (enemyDeffence.includes(playerAttack)) {
             const p = document.createElement('p');
             p.innerHTML = `<span class="fight-log-pink">${player.name}</span> attacked <span class="fight-log-pink">${enemy.name}</span> to <span class="fight-log-pink">${playerAttack}</span> but ${enemy.name} was able to protect his ${playerAttack}`;
             fightLog.append(p);
@@ -262,12 +264,13 @@ function fightRound() {
     }
 
     const enemyAttacks = createEnemyZoneSelection(enemy.attackZones);
-    const playerDeffence = [...(document.querySelectorAll('.fight-options .deffence-zones input:checked'))].map(input => input.value);
-
+    const playerDeffence = Array.from(document.querySelectorAll('.fight-options .deffence-zones input:checked')).map(input => input.value) 
+    console.log(enemyAttacks);
+    console.log(playerDeffence);
 
     while (enemyAttacks.length) {
         let enemyAttack = enemyAttacks.pop()
-        if (!playerDeffence.includes(enemyAttack)) {
+        if (playerDeffence.includes(enemyAttack)) {
             const p = document.createElement('p');
             p.innerHTML = `<span class="fight-log-pink">${enemy.name}</span> attacked <span class="fight-log-pink">${player.name}</span> to <span class="fight-log-pink">${enemyAttack}</span> but ${player.name} was able to protect his ${enemyAttack}`;
             fightLog.append(p);
