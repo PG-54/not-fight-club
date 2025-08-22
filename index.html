@@ -12,9 +12,11 @@
         <img src="assets/backgrounds/loose.jpg" alt="loose-screen" id="loose" class="disabled">
     </div>
     <audio src="assets/sounds/fight-music.mp3" loop class="fight-music"></audio>
-    <audio src="assets/sounds/chill-music.flac" loop class="chill-music"></audio>
-    <audio src="" class="win-sound"></audio>
-    <audio src="" class="loose-sound"></audio>
+    <audio src="assets/sounds/chill-music.mp3" loop class="chill-music"></audio>
+    <audio src="assets/sounds/win.mp3" class="win-sound"></audio>
+    <audio src="assets/sounds/loose.mp3" class="loose-sound"></audio>
+    <audio src="assets/sounds/enemy-hit.mp3" class="enemy-hit"></audio>
+    <audio src="assets/sounds/player-hit.mp3" class="player-hit"></audio>
     <header>
         <p>CHARACTER</p>
         <ul>
@@ -27,7 +29,7 @@
     <main>
         <section class="char-creation">
             <p>WHAT IS<br>YOUR NAME<br>Fellow Guest?</p>
-            <input type="text" maxlength="30">
+            <input type="text" placeholder="Enter your name" maxlength="25">
             <button type="button">Submit</button>
             <audio class="char-creation-bg-music" src="assets/sounds/char-creation-bg-music.mp3" loop></audio>
             <audio class="char-creation-submit" src="assets/sounds/char-cretion-submit.mp3"></audio>
@@ -38,7 +40,7 @@
             <div>
                 <div class="char-settings">
                     <button onclick="toggleCharEditMenu()"><img src="assets/icons/close-settings.png" alt="close"></button>
-                    <label><input type="text" value="" maxlength="30" readonly><img src="assets/icons/edit.png" alt="edit"><img src="assets/icons/name-edit-submit.jpg" alt="submit"><img src="assets/icons/name-edit-cross.jpg" alt="cancel"></label>
+                    <label><input type="text" value="" maxlength="25" readonly><img src="assets/icons/edit.png" alt="edit"><img src="assets/icons/name-edit-submit.jpg" alt="submit"><img src="assets/icons/name-edit-cross.jpg" alt="cancel"></label>
                     <div>
                         <img src="assets/characters/mike.jpg" alt="char-img">
                         <img src="assets/characters/mage.jpg" alt="char-img">
@@ -84,7 +86,10 @@
                 </div>
                 <div class="avatar player">
                     <p class="char-name"></p>
-                    <img class="char-image" src="assets/characters/mike.jpg" alt="char">
+                    <div class="fight-char-image-wrapper">
+                        <img class="char-image" src="assets/characters/mike.jpg" alt="char">
+                        <div class="disabled"></div>
+                    </div>
                     <div class="health-bar-wrapper"><div class="health-bar"></div></div>
                     <p class="health-points"><span class="current-health">150</span>/<span class="max-health">150</span></p>
                 </div>
@@ -115,7 +120,10 @@
 
                 <div class="avatar enemy">
                     <p class="enemy-name"></p>
-                    <img class="char-image" src="assets/characters/mike.jpg" alt="enemy">
+                    <div class="fight-char-image-wrapper">
+                        <img class="char-image" src="assets/characters/mike.jpg" alt="enemy">
+                        <div class="disabled"></div>
+                    </div>
                     <div class="health-bar-wrapper"><div class="health-bar"></div></div>
                     <p class="health-points"><span class="current-health"></span>/<span class="max-health"></span></p>
                 </div>

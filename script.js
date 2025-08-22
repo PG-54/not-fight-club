@@ -1,5 +1,7 @@
 document.querySelector('.fight-music').volume = .2;
 document.querySelector('.chill-music').volume = .2;
+document.querySelector('.player-hit').volume = .4;
+document.querySelector('.enemy-hit').volume = .4;
 
 const charCreateAudio = document.querySelector('.char-creation-bg-music');
 charCreateAudio.volume = .1;
@@ -250,6 +252,13 @@ function fightRound() {
         const p = document.createElement('p');
         p.innerHTML = `<span class="fight-log-pink">${player.name}</span> attacked <span class="fight-log-pink">${enemy.name}</span> to <span class="fight-log-pink">${playerAttack}</span> and dealt <span class="fight-log-damage">${player.damage} damage</span>`;
         fightLog.append(p);
+
+        document.querySelector('.enemy-hit').currentTime = 0;
+        document.querySelector('.enemy-hit').play();
+        document.querySelector('.enemy .fight-char-image-wrapper div').classList.toggle('disabled', false);
+        setTimeout(() => {
+            document.querySelector('.enemy .fight-char-image-wrapper div').classList.toggle('disabled', true);
+        }, 300)
     }
 
     const enemyAttacks = createEnemyZoneSelection(enemy.attackZones);
@@ -272,9 +281,19 @@ function fightRound() {
         const p = document.createElement('p');
         p.innerHTML = `<span class="fight-log-pink">${enemy.name}</span> attacked <span class="fight-log-pink">${player.name}</span> to <span class="fight-log-pink">${enemyAttack}</span> and dealt <span class="fight-log-damage">${enemy.damage} damage</span>`;
         fightLog.append(p);
+
+        document.querySelector('.player-hit').currentTime = 0;
+        document.querySelector('.player-hit').play();
+        document.querySelector('.player .fight-char-image-wrapper div').classList.toggle('disabled', false);
+        setTimeout(() => {
+            document.querySelector('.player .fight-char-image-wrapper div').classList.toggle('disabled', true);
+        }, 300)
     }
 
     if (+currentPlayerHealth.innerHTML <= 0) {
+        document.querySelector('.enemy .fight-char-image-wrapper div').classList.toggle('disabled', true);
+        document.querySelector('.player .fight-char-image-wrapper div').classList.toggle('disabled', true);
+
         fightLog.innerHTML = '';
         document.querySelector('.fight-music').pause();
         document.getElementById('overlay').classList.toggle('disabled', false);
@@ -286,6 +305,9 @@ function fightRound() {
         return
     }
     if (+currentEnemyHealth.innerHTML <= 0) {
+        document.querySelector('.enemy .fight-char-image-wrapper div').classList.toggle('disabled', true);
+        document.querySelector('.player .fight-char-image-wrapper div').classList.toggle('disabled', true);
+
         fightLog.innerHTML = '';
         document.querySelector('.fight-music').pause();
         document.getElementById('overlay').classList.toggle('disabled', false);
