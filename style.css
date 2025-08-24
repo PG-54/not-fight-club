@@ -1,0 +1,630 @@
+
+@font-face {
+    font-family: 'Chiller';
+    src: url(assets/fonts/chiller_regular.ttf);
+}
+@font-face {
+    font-family: 'Forum';
+    src: url(assets/fonts/Forum-Regular.ttf);
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url(assets/fonts/Roboto-Regular.ttf);
+}
+:root {
+    --color-winx: #ea236a;
+}
+
+.disabled {
+    display: none !important;
+}
+
+
+#overlay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000001;
+    background: none;
+    cursor: pointer;
+}
+#overlay img {
+    width: 50%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000000;
+    border-radius: 25px;
+    box-shadow: 0 0 50px rgba(255, 255, 255, .3);
+}
+
+
+button {
+    width: fit-content;
+    height: fit-content;
+    background: none;
+    border: none;
+    outline: none;
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    overflow: hidden;
+}
+
+header {
+    user-select: none;
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 40px;
+    align-items: center;
+    background-color: #000;
+    color: var(--color-winx);
+    font-family: 'Forum', serif;
+
+
+    box-shadow: 0 0 10px rgba(255, 255, 255, .2);
+    position: relative;
+    z-index: 500;
+
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: 3.5px;
+}
+header ul {
+    display: flex;
+    list-style: none;
+}
+header img {
+    margin-left: 60px;
+    width: 60px;
+    height: auto;
+    cursor: pointer;
+}
+header li {
+    position: relative;
+}
+header span {
+    display: block;
+    z-index: 3000;
+    color: var(--color-winx);
+    background-color: #000;
+    font-size: 24px;
+    letter-spacing: .5px;
+    text-align: center;
+    line-height: 0;
+    padding: 10px;
+    font-family: 'roboto';
+
+    filter: opacity(0);
+    transition: all .2s linear;
+    
+    border-radius: 8px;
+    border: 2px solid #111;
+    box-shadow: 0 0 5px rgba(255, 255, 255, .3);
+    
+    position: absolute;
+    top: 110%;
+    right: -5px;
+}
+header img:hover + span {
+    filter: opacity(1);
+}
+
+footer {
+    width: 100vw;
+    height: 5vh;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    color: var(--color-winx);
+
+
+    box-shadow: 0 0 10px rgba(255, 255, 255, .2);
+    position: relative;
+    z-index: 500;
+}
+
+main {
+    width: 100vw;
+    height: 85vh;
+    background-image: url(assets/backgrounds/logo.jpg);
+    background-size: cover;
+    position: relative;
+}
+section {
+    width: inherit;
+    height: inherit;
+    color: var(--color-winx);
+}
+.char-creation {
+    user-select: none;
+    width: 100vw;
+    height: 100vw;
+    position: fixed;
+    z-index: 20000;
+    top: 0;
+    left: 0;
+    background-image: url(assets/backgrounds/char-creation.jpg);
+    background-size: contain;
+    font-family: 'Chiller', serif;
+    font-size: 177px;
+    letter-spacing: 2px;
+    line-height: 130px;
+    font-weight: 400;
+    color: #d2672e;
+    text-shadow: 4px 4px 6px black;
+
+    padding: 8vw 7.9vw;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+
+    transition: all 2.8s linear;
+}
+.char-creation input {
+    width: 725px;
+    height: 123px;
+    padding: 22px 22px 30px;
+    background-color: #d2672e;
+    
+    font-family: 'Forum', serif;
+    font-size: 80px;
+    font-weight: 500;
+    color: #3E2723;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, .5);
+
+    mask-image: url(assets/icons/char-name-input-msk.png);
+    outline: none;
+    border: none;
+}
+
+.char-creation button {
+    width: 341px;
+    height: 123px;
+    background-color: #2d250e;
+    
+    font-family: 'Chiller', serif;
+    font-size: 80px;
+    letter-spacing: 2px;
+    color: #ffb891;
+    mask-image: url(assets/icons/char-name-button-msk.png);
+    margin-left: 255px;
+    cursor: pointer;
+}
+.char-creation button:active {
+    transform: scale(.9);
+    filter: brightness(.5);
+}
+audio {
+    display: none;
+}
+.van-sound {
+    display: block;
+    width: 478px;
+    height: 876px;
+    position: fixed;
+    bottom: 0;
+    right: 447px;
+    filter: opacity(0);
+    cursor: pointer;
+}
+
+
+
+.CHARACTER {
+    padding-left: 870px;
+    padding-top: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-align: center;
+    line-height: 0;
+}
+.CHARACTER > div {
+    display: flex;
+    column-gap: 30px;
+    width: fit-content;
+    height: fit-content;
+}
+.inventory {
+    user-select: none;
+    line-height: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    width: 300px;
+    background-color: #000;
+    border-radius: 20px;
+    border: 2px solid #111;
+    box-shadow: 0 0 10px rgba(255, 255, 255, .3);
+}
+.inventory > * {
+    padding: 20px 0;
+    width: 100%;
+}
+.inventory div:nth-child(even) {
+    border-bottom: 2px solid #111;
+    border-top: 2px solid #111;
+}
+.inventory img {
+    width: 80px;
+    height: 120px;
+    padding: 20px 0;
+}
+.inventory div p:not(:first-child) {
+    padding-bottom: 8px;
+}
+
+.avatar {
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    row-gap: 24px;
+
+    width: 550px;
+    height: fit-content;
+    padding: 30px;
+    background-color: #000;
+    border-radius: 20px;
+    border: 2px solid #111;
+    box-shadow: 0 0 10px rgba(255, 255, 255, .3);
+}
+
+.avatar-image {
+    width: 100%;
+    position: relative;
+}
+.char-image-select {
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 265 / 326;
+    background-color: rgba(0, 0, 0, .5);
+    filter: opacity(0);
+    top: 0;
+    left: 0;
+    transition: all .2s;
+    cursor: pointer;
+}
+.char-image-select:hover {
+    filter: opacity(1);
+}
+.char-image-select::after {
+    content: url(assets/icons/004-settings.png);
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.avatar img {
+    width: 100%;
+    aspect-ratio: 265 / 326;
+    border-radius: 20px;
+    object-fit: cover;
+}
+.statistics {
+    width: 100%;
+    padding-top: 10px;
+    background-color: #000;
+    display: flex;
+    justify-content: space-around;
+}
+
+.char-settings {
+    width: 800px;
+    position: absolute;
+    left: -830px;
+    padding: 30px;
+    background-color: #000;
+    border-radius: 20px;
+    border: 2px solid #111;
+    box-shadow: 0 0 10px rgba(255, 255, 255, .3);
+
+    transition: all .2s ease;
+}
+.char-settings button {
+    cursor: pointer;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+.char-settings > label {
+    width: 100%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+.char-settings > label input {
+    font-size: 1em;
+    background-color: #111;
+    outline: none;
+    border: none;
+    width: 15em;
+    padding: .8em;
+    border-radius: 10px;
+    color: var(--color-winx);
+    cursor: auto;
+}
+.char-settings > label img {
+    width: 1.8em;
+    height: auto;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.char-settings > label img:not(:first-of-type) {
+    display: none;
+}
+
+.char-settings div {
+    margin-top: 20px;
+    display: flex;
+    column-gap: 20px;
+    overflow-x: scroll;
+    padding-bottom: 20px;
+}
+.char-settings div > *, .char-settings div label img {
+    width: 400px;
+    aspect-ratio: 265 / 326;
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+.char-settings div > *:hover, .char-settings div label img:hover {
+    filter: brightness(.6);
+}
+.char-settings input[type='file'] {
+    display: none;
+}
+
+::-webkit-scrollbar {
+    appearance: none;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #111;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.Fight {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 50px;
+}
+
+.Fight .avatar, .avatar.enemy {
+    width: 500px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+}
+.fight-char-image-wrapper {
+    width: 100%;
+    position: relative;
+}
+.fight-char-image-wrapper div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: red;
+    mix-blend-mode: overlay;
+}
+
+
+.health-bar-wrapper {
+    width: 100%;
+    height: 30px;
+    background-color: #000;
+    border: 4px #111 solid;
+    position: relative;
+}
+.health-bar {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: var(--color-winx);
+    transition: all .2s linear;
+}
+.player .health-bar {
+    left: 0;
+}
+.enemy .health-bar {
+    right: 0;    
+}
+.fight-options {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    row-gap: 20px;
+    flex-direction: column;
+    font-size: 34px;
+    letter-spacing: 3px;
+    font-family: 'Forum', serif;
+    font-weight: 500;
+}
+.fight-options p {
+    text-shadow: 1px 0 4px black;
+}
+.options-wraper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    letter-spacing: .5px;
+    padding: 0 30px;
+    background-color: #000;
+    border-radius: 20px;
+    border: 2px solid #111;
+    box-shadow: 0 0 10px rgba(255, 255, 255, .3);
+    width: 400px;
+}
+
+.options-wraper hr {
+    height: 100%;
+    background-color: #111;
+    width: 4px;
+    border: none;
+}
+.options-wraper div {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    row-gap: 4px;
+    padding-top: 20px;
+}
+.options-wraper div p {
+    font-size: 30px;
+    font-family: 'Forum';
+    font-weight: 500;
+}
+.options-wraper div label {
+    cursor: pointer;
+    padding-bottom: 8px;
+}
+.attack-zones {
+    text-align: right;
+    padding-right: 30px;
+}
+.deffence-zones {
+    text-align: left;
+    padding-left: 30px;
+}
+.options-wraper input {
+    display: none;
+}
+.options-wraper label span {
+    width: .8em;
+    height: .8em;
+    display: block;
+    border-radius: 50%;
+    background-color: #000;
+    border: 2px solid var(--color-winx);
+}
+.options-wraper div label input:checked + span {
+    background-color: var(--color-winx);
+}
+.options-wraper div label {
+    vertical-align: middle;
+    align-items: center;
+    display: flex;
+    column-gap: 10px;
+}
+.attack-zones label {
+    justify-content: flex-end;
+}
+
+.fight-options button {
+    color: var(--color-winx);
+    padding: 8px 24px;
+    background-color: #000;
+    border-radius: 14px;
+    border: 2px solid #111;
+    box-shadow: 0 0 10px var(--color-winx);
+    font-family: 'Forum', serif;
+    font-size: 30px;
+    cursor: pointer;
+    filter: saturate(.2);
+
+    user-select: none;
+    transition: all .1s ease-in;
+    pointer-events: none;
+}
+.fight-options button:active {
+    transform: scale(.95);
+}
+
+.FIGHT {
+    position: relative;
+}
+.FIGHT > button {
+    color: var(--color-winx);
+    font-size: 300px;
+    letter-spacing: 25px;
+    line-height: 1em;
+    padding: 80px 120px 50px;
+    font-family: 'Chiller';
+    background-image: url(assets/svg/fight-button-msk.svg);
+    background-size: 100% 100%;
+    filter: drop-shadow(0 0 40px #ea236a);
+    margin-left: 42%;
+    margin-top: 11%;
+    cursor: pointer;
+    transition: all .015s ease-in;
+}
+.FIGHT > button:active {
+    transform: scale(.95);
+}
+
+
+.fight-log {
+    width: 760px;
+    height: 400px;
+    padding: 24px;
+    background-color: #000;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border: 2px solid #111;
+    box-shadow: 0 0 8px rgba(255, 255, 255, .2);
+    color: #888;
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    overflow-y: scroll;
+    
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: .5px;
+}
+
+
+.fight-log::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+}
+
+.fight-log-pink {
+    color: var(--color-winx);
+}
+.fight-log-damage {
+    font-weight: 600;
+    color: #aaa;
+}
+
+footer {
+    justify-content: space-between;
+    padding: 0 80px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+footer div {
+    display: flex;
+    column-gap: 20px;
+}
+footer a {
+    text-decoration: none;
+    color: #da7a9b;
+}

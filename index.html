@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>That's not a Fight Club))</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="overlay" class="disabled" onclick="switchPage('.CHARACTER')">
+        <img src="assets/backgrounds/win.jpg" alt="win-screen" id="win" class="disabled">
+        <img src="assets/backgrounds/loose.jpg" alt="loose-screen" id="loose" class="disabled">
+    </div>
+    <audio src="assets/sounds/fight-music.mp3" loop class="fight-music"></audio>
+    <audio src="assets/sounds/chill-music.mp3" loop class="chill-music"></audio>
+    <audio src="assets/sounds/win.mp3" class="win-sound"></audio>
+    <audio src="assets/sounds/loose.mp3" class="loose-sound"></audio>
+    <audio src="assets/sounds/enemy-hit.mp3" class="enemy-hit"></audio>
+    <audio src="assets/sounds/player-hit.mp3" class="player-hit"></audio>
+    <header>
+        <p>CHARACTER</p>
+        <ul>
+            <li><img onclick="switchPage('.FIGHT')" src="assets/icons/001-battle.png" alt="battle"><span>fight</span></li>
+            <li><img class="disabled" src="assets/icons/002-grocery-store.png" alt="shop"><span>shop</span></li>
+            <li><img onclick="switchPage('.CHARACTER')" src="assets/icons/003-game.png" alt="character"><span>character</span></li>
+        </ul>
+    </header>
+
+    <main>
+        <section class="char-creation">
+            <p>WHAT IS<br>YOUR NAME<br>Fellow Guest?</p>
+            <input type="text" placeholder="Enter your name" maxlength="25">
+            <button type="button">Submit</button>
+            <audio class="char-creation-bg-music" src="assets/sounds/char-creation-bg-music.mp3" loop></audio>
+            <audio class="char-creation-submit" src="assets/sounds/char-cretion-submit.mp3"></audio>
+            <audio class="van-sound" src="assets/sounds/woo_1.mp3" controls></audio>
+        </section>
+
+        <section class="CHARACTER">
+            <div>
+                <div class="char-settings">
+                    <button onclick="toggleCharEditMenu()"><img src="assets/icons/close-settings.png" alt="close"></button>
+                    <label><input type="text" value="" maxlength="25" readonly><img src="assets/icons/edit.png" alt="edit"><img src="assets/icons/name-edit-submit.jpg" alt="submit"><img src="assets/icons/name-edit-cross.jpg" alt="cancel"></label>
+                    <div>
+                        <img src="assets/characters/mike.jpg" alt="char-img">
+                        <img src="assets/characters/mage.jpg" alt="char-img">
+                        <label>
+                            <input type="file" accept="image/*">
+                            <img src="assets/characters/upload.jpg" alt="upload">
+                        </label>
+                    </div>
+                </div>
+                <div class="avatar">
+                    <p class="char-name"></p>
+                    <div class="avatar-image">
+                        <div class="char-image-select" onclick="toggleCharEditMenu()"></div>
+                        <img class="char-image" src="assets/characters/mike.jpg" alt="mike"> 
+                    </div>
+                    <div class="statistics">
+                        <p>WINS: <span class="wins">0</span></p>
+                        <p>LOSES: <span class="loses">0</span></p>
+                    </div>
+                </div>
+                <div class="inventory">
+                    <p>ITEMS</p>
+                    <div>
+                        <p>Sword</p>
+                        <img src="assets/icons/002-sword.png" alt="sword">
+                        <p>Attack Zones: <span>1</span></p>
+                        <p>Damage: <span>20</span></p>
+                    </div>
+                    <div>
+                        <p>Shield</p>
+                        <img src="assets/icons/001-shield.png" alt="shield">
+                        <p>Deffence Zones: <span>2</span></p>
+                        <p>Health: <span>150</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="FIGHT disabled">
+            <button type="button" onclick="startFight()">FIGHT</button>
+            <div class="Fight disabled">
+                <div class="fight-log">
+                </div>
+                <div class="avatar player">
+                    <p class="char-name"></p>
+                    <div class="fight-char-image-wrapper">
+                        <img class="char-image" src="assets/characters/mike.jpg" alt="char">
+                        <div class="disabled"></div>
+                    </div>
+                    <div class="health-bar-wrapper"><div class="health-bar"></div></div>
+                    <p class="health-points"><span class="current-health">150</span>/<span class="max-health">150</span></p>
+                </div>
+
+                <div class="fight-options">
+                    <p>SELECT ATTACK AND DEFFENCE ZONES</p>
+                    <div class="options-wraper">
+                        <div class="attack-zones">
+                            <p>CHOOSE <span></span></p>
+                            <label>HEAD <input type="checkbox" value="Head"><span></span></label>
+                            <label>NECK <input type="checkbox" value="Neck"><span></span></label>
+                            <label>BODY <input type="checkbox" value="Body"><span></span></label>
+                            <label>BELLY <input type="checkbox" value="Belly"><span></span></label>
+                            <label>LEGS <input type="checkbox" value="Legs"><span></span></label>
+                        </div>
+                        <hr>
+                        <div class="deffence-zones">
+                            <p>CHOOSE <span></span></p>
+                            <label><input type="checkbox" value="Head"><span></span> HEAD</label>
+                            <label><input type="checkbox" value="Neck"><span></span> NECK</label>
+                            <label><input type="checkbox" value="Body"><span></span> BODY</label>
+                            <label><input type="checkbox" value="Belly"><span></span> BELLY</label>
+                            <label><input type="checkbox" value="Legs"><span></span> LEGS</label>
+                        </div>
+                    </div>
+                    <button type="button" onclick="fightRound()">FIGHT</button>
+                </div>
+
+                <div class="avatar enemy">
+                    <p class="enemy-name"></p>
+                    <div class="fight-char-image-wrapper">
+                        <img class="char-image" src="assets/characters/mike.jpg" alt="enemy">
+                        <div class="disabled"></div>
+                    </div>
+                    <div class="health-bar-wrapper"><div class="health-bar"></div></div>
+                    <p class="health-points"><span class="current-health"></span>/<span class="max-health"></span></p>
+                </div>
+            </div>
+        </section>
+
+    <!--
+        <section class="SHOP">
+
+        </section>-->
+    </main>
+
+    <footer>
+        <div>
+        <p>2025&copy;</p>
+        <a target="_blank" href="https://rs.school/courses/javascript">Rolling Scopes School</a>
+        <a target="_blank" href="http://github.com/PG-54">PG-54</a>
+        </div>
+        <p>Icons designed by <a href="https://www.flaticon.com/authors/good-ware" title="Good Ware">Good Ware</a>, <a href="https://www.flaticon.com/authors/iconic-panda" title="Iconic Panda">Iconic Panda</a>, <a href="https://www.flaticon.com/authors/pixel-perfect">Pixel perfect</a>, <a href="https://www.flaticon.com/authors/frey-wazza">Frey Wazza</a>, <a href="https://www.flaticon.com/authors/freepik">Freepic</a> and <a href="https://www.flaticon.com/authors/microstd">microstd</a> from <a href="https://www.flaticon.com/">Flaticon</a></p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
